@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CommidityGroup(Enum):
+class CommodityGroup(Enum):
 	ANIMAL_PROTEIN_FEEDS = 8
 	BARLEY               = 9
 	BYPRODUCT_FEEDS      = 10
@@ -15,6 +15,6 @@ class CommidityGroup(Enum):
 	PROCESSED_FEEDS      = 19
 	SORGHUM              = 20
 
-	
+
 	
 	
