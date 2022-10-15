@@ -1,11 +1,17 @@
+from Commodity import Commodity
+from Indicator import Indicator
+
 class Measurement(object):
 	"""docstring for Measurement"""
-	def __init__(self,year,value,timeperiodId,timeperiodDescr):
-		self.year = year
-		self.value = value
-		self.timeperiodId = timeperiodId
-		self.timeperiodDescr = timeperiodDescr
-		
+	def __init__(self,year:int,value:float,timeperiodId:int,timeperiodDescr:str,commodity:Commodity,indicator:Indicator):
+		self.__year = year
+		self.__value = value
+		self.__timeperiodId = timeperiodId
+		self.__timeperiodDescr = timeperiodDescr
+		self.commidity = commodity
+		self.indicator = indicator
 
-		
+
+
+
 		
