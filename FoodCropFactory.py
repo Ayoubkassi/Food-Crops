@@ -1,3 +1,5 @@
+from CommodityGroup import CommodityGroup
+from Commodity import Commodity
 from Volume import Volume
 from Price import Price
 from Weight import Weight
@@ -32,6 +34,10 @@ class FoodCropFactory(object):
 	@staticmethod
 	def createRatio(id:int):
 		return Ratio(id)
+
+	@staticmethod
+	def createCommodity(group:CommodityGroup,id:int,name:str):
+		return Commodity(group,id,name)
 
 
 
