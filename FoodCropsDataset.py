@@ -17,12 +17,6 @@ class FoodCropsDataset(object):
 
 		dataframe = pd.read_csv(datasetPath)
 		for index, row in dataframe.iterrows():
-			# create indicator 
-			indicator = FoodCropFactory.createIndicator(row[9],row[14],row[15],row[6],IndicatorGroup(row[0]),)
-
-			# create commodity
-
-			
 
 			# create unit
 			# for unit we have : 
@@ -42,10 +36,17 @@ class FoodCropsDataset(object):
 			else if row[11] in (6,11,13,45):
 				unit = FoodCropFactory.createRatio(row[11])
 			else if row[11] in (7,8,9,41):
-				unit = FoodCropFactory.createWeight(row[11])
+				unit = FoodCropFactory.createWeight(1000,row[11])
 			else :
-				unit = FoodCropFactory.createCount(row[11])
-				
+				unit = FoodCropFactory.createCount("count",row[11])
+
+
+			# create indicator 
+			indicator = FoodCropFactory.createIndicator(row[9],row[14],row[15],row[6],IndicatorGroup(row[0]),unit)
+
+			# create commodity
+
+			commodity = FoodCropFactory.createCommodity(CommodityGroup(row[2]),row[7],row[8])
 
 
 			# craete measurement
