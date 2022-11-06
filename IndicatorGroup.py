@@ -9,3 +9,6 @@ class IndicatorGroup(Enum):
 	QUANTITIES_FED      = 6
 	FEED_PRICE_RATIOS   = 7
 	
+
+
+print(IndicatorGroup(1))
