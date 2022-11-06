@@ -13,7 +13,7 @@ class FoodCropsDataset(object):
 	@staticmethod
 	def load(datasetPath:str="./data/FeedGrains.csv"):
 		indicators = {}
-		#units = {}
+		units = {}
 		commodities = {}
 		measurements = {}
 
@@ -40,21 +40,25 @@ class FoodCropsDataset(object):
 			# 7,8,9,41 -> weight
 			# 15,16,46 -> count 
 
-			if row[11] in (4,5,12,14,31):
-				unit = FoodCropFactory.createPrice(row[11])
-			elif row[11] in (2,10,44):
-				unit = FoodCropFactory.createSurface(row[11])
-			elif row[11] in (1,3,17,18):
-				unit = FoodCropFactory.createVolume(row[11])
-			elif row[11] in (6,11,13,45):
-				unit = FoodCropFactory.createRatio(row[11])
-			elif row[11] in (7,8,9,41):
-				unit = FoodCropFactory.createWeight(1000,row[11])
+			if row[11] in units:
+				unit = units[row[11]]
 			else :
-				unit = FoodCropFactory.createCount("count",row[11])
 
+				if row[11] in (4,5,12,14,31):
+					unit = FoodCropFactory.createPrice(row[11])
+				elif row[11] in (2,10,44):
+					unit = FoodCropFactory.createSurface(row[11])
+				elif row[11] in (1,3,17,18):
+					unit = FoodCropFactory.createVolume(row[11])
+				elif row[11] in (6,11,13,45):
+					unit = FoodCropFactory.createRatio(row[11])
+				elif row[11] in (7,8,9,41):
+					unit = FoodCropFactory.createWeight(1000,row[11])
+				else :
+					unit = FoodCropFactory.createCount("count",row[11])
 
-			
+				units[row[11]] = unit
+
 
 			# create indicator 
 			#check for existence before create
@@ -81,7 +85,6 @@ class FoodCropsDataset(object):
 			# column_value = row[3]
 			# print(column_value)
 		
-
 	
 	def findMeasurements(commodityGroup:CommodityGroup=None ,indicatorGroup:IndicatorGroup=None ,geoGraphicalLocation:str=None ,unit:Unit=None):
 		pass
