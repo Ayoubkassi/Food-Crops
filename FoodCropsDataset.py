@@ -13,7 +13,7 @@ class FoodCropsDataset(object):
 	@staticmethod
 	def load(datasetPath:str="./data/FeedGrains.csv"):
 		indicators = {}
-		units = {}
+		#units = {}
 		commodities = {}
 		measurements = {}
 
@@ -21,14 +21,13 @@ class FoodCropsDataset(object):
 
 		dataframe = pd.read_csv(datasetPath)
 		for index, row in dataframe.iterrows():
-			# itterate+=1
-			# print(row[0])
+
+			#skip none values
 			if math.isnan(row[2]) :
 				continue
 
 
-				
-
+			
 
 
 			# create unit
@@ -52,21 +51,24 @@ class FoodCropsDataset(object):
 				unit = FoodCropFactory.createWeight(1000,row[11])
 			else :
 				unit = FoodCropFactory.createCount("count",row[11])
+
+
 			
 
 			# create indicator 
 			indicator = FoodCropFactory.createIndicator(row[9],row[14],row[15],row[6],IndicatorGroup(row[0]),unit)
+			indicators[row[9]] = indicator
 
 			# create commodity
 
 			commodity = FoodCropFactory.createCommodity(CommodityGroup(row[2]),row[7],row[8])
+			commodities[row[7]] = commodity
 
 
 			# craete measurement
 
 			measurement = FoodCropFactory.createMeasurement(row[13],row[18],row[16],row[17],commodity,indicator)
-
-
+			measurements[index] = measurement
 
 			# column_value = row[3]
 			# print(column_value)
