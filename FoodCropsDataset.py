@@ -21,6 +21,7 @@ class FoodCropsDataset(object):
 
 		dataframe = pd.read_csv(datasetPath)
 		for index, row in dataframe.iterrows():
+			print(index)
 
 			#skip none values
 			if math.isnan(row[2]) :
@@ -56,13 +57,20 @@ class FoodCropsDataset(object):
 			
 
 			# create indicator 
-			indicator = FoodCropFactory.createIndicator(row[9],row[14],row[15],row[6],IndicatorGroup(row[0]),unit)
-			indicators[row[9]] = indicator
+			#check for existence before create
+			if row[9] in indicators : 
+				indicator = indicators[row[9]]
+			else :
+			    indicator = FoodCropFactory.createIndicator(row[9],row[14],row[15],row[6],IndicatorGroup(row[0]),unit)
+			    indicators[row[9]] = indicator
 
 			# create commodity
-
-			commodity = FoodCropFactory.createCommodity(CommodityGroup(row[2]),row[7],row[8])
-			commodities[row[7]] = commodity
+			#check for existence before
+			if row[7] in commodities:
+				commodity = commodities[row[7]]
+			else :
+			    commodity = FoodCropFactory.createCommodity(CommodityGroup(row[2]),row[7],row[8])
+			    commodities[row[7]] = commodity
 
 
 			# craete measurement
