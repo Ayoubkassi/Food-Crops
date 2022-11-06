@@ -1,8 +1,10 @@
 from IndicatorGroup import IndicatorGroup
 from CommodityGroup import CommodityGroup
 from FoodCropFactory import FoodCropFactory
+from Measurement import Measurement
 from Unit import Unit
 import pandas as pd
+import math 
 
 class FoodCropsDataset(object):
 	def __init__(self):
@@ -15,8 +17,19 @@ class FoodCropsDataset(object):
 		commodities = {}
 		measurements = {}
 
+		itterate = 1
+
 		dataframe = pd.read_csv(datasetPath)
 		for index, row in dataframe.iterrows():
+			# itterate+=1
+			# print(row[0])
+			if math.isnan(row[2]) :
+				continue
+
+
+				
+
+
 
 			# create unit
 			# for unit we have : 
@@ -29,17 +42,17 @@ class FoodCropsDataset(object):
 
 			if row[11] in (4,5,12,14,31):
 				unit = FoodCropFactory.createPrice(row[11])
-			else if row[11] in (2,10,44):
+			elif row[11] in (2,10,44):
 				unit = FoodCropFactory.createSurface(row[11])
-			else if row[11] in (1,3,17,18):
+			elif row[11] in (1,3,17,18):
 				unit = FoodCropFactory.createVolume(row[11])
-			else if row[11] in (6,11,13,45):
+			elif row[11] in (6,11,13,45):
 				unit = FoodCropFactory.createRatio(row[11])
-			else if row[11] in (7,8,9,41):
+			elif row[11] in (7,8,9,41):
 				unit = FoodCropFactory.createWeight(1000,row[11])
 			else :
 				unit = FoodCropFactory.createCount("count",row[11])
-
+			
 
 			# create indicator 
 			indicator = FoodCropFactory.createIndicator(row[9],row[14],row[15],row[6],IndicatorGroup(row[0]),unit)
@@ -50,6 +63,8 @@ class FoodCropsDataset(object):
 
 
 			# craete measurement
+
+			measurement = FoodCropFactory.createMeasurement(row[13],row[18],row[16],row[17],commodity,indicator)
 
 
 

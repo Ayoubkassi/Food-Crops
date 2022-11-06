@@ -47,8 +47,8 @@ class FoodCropFactory(object):
 		return Indicator(id,frequency,freqDesc,geoLocation,indicatorGroup,unit)
 
 	@staticmethod
-	def createMeasurement(id:int,year:int,value:float,timeperiodId:int,timeperiodDescr:str,commodity:Commodity,indicator:Indicator):
-		return Measurement(id,year,value,timeperiodId,timeperiodDescr,commodity,indicator)
+	def createMeasurement(year:int,value:float,timeperiodId:int,timeperiodDescr:str,commodity:Commodity,indicator:Indicator):
+		return Measurement(year,value,timeperiodId,timeperiodDescr,commodity,indicator)
 
 
 
