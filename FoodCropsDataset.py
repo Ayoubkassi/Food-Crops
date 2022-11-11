@@ -65,8 +65,12 @@ class FoodCropsDataset(object):
 			if row[9] in indicators : 
 				indicator = indicators[row[9]]
 			else :
-			    indicator = FoodCropFactory.createIndicator(row[9],row[14],row[15],row[6],IndicatorGroup(row[0]),unit)
+			    indicator = FoodCropFactory.createIndicator(row[9],row[14],row[15],row[6].strip(),IndicatorGroup(row[0]),unit)
 			    indicators[row[9]] = indicator
+
+			# print(indicator.get_geoLocation())
+			# if(indicator.get_geoLocation() == "World"):
+			# 	break
 
 			# create commodity
 			#check for existence before
@@ -90,19 +94,24 @@ class FoodCropsDataset(object):
 		
 	
 	def findMeasurements(commodityGroup:CommodityGroup=None ,indicatorGroup:IndicatorGroup=None ,geoGraphicalLocation:str=None ,unit:Unit=None):
-		measurements = FoodCropsDataset.load()
-		filterDict = (dict(filter(lambda x : (x[1].commodity.group,x[1].indicator.indicatorGroup,x[1].indicator.unit,x[1].indicator.get_geoLocation()) 
-			== 
-							(commodityGroup,indicatorGroup,unit,geoGraphicalLocation), measurements.items())))
+		filtered_measurements = FoodCropsDataset.load()
+		if commodityGroup is not None:
+			filtered_measurements = (dict(filter(lambda x : x[1].commodity.group == commodityGroup, filtered_measurements.items()))) 
 
-		if len(filterDict) == 0 :
-			return measurements
-		else :
-			return filterDict
+		if indicatorGroup is not None :
+			filtered_measurements = (dict(filter(lambda x : x[1].indicator.indicatorGroup == indicatorGroup, filtered_measurements.items()))) 
+
+		if geoGraphicalLocation is not None :
+			filtered_measurements = (dict(filter(lambda x : x[1].indicator.get_geoLocation() == geoGraphicalLocation, filtered_measurements.items()))) 
+
+		if unit is not None :
+			filtered_measurements = (dict(filter(lambda x : x[1].indicator.unit == unit, filtered_measurements.items()))) 
+
+		return filtered_measurements
 
 
+print(f' data size is : {len(FoodCropsDataset.findMeasurements(None,None,"World",None))}')
 
-print(f' data size is : {len(FoodCropsDataset.findMeasurements())}')
 
 
 

@@ -41,7 +41,6 @@ std3 = Student("Amine",17,major2)
 students = {1 : std1 , 2: std2, 3 : std3 }
 
 def find(name:str=None, age:int=None, major:Major=None):
-	k = 0
 	filtered_dict = students
 	if name is not None :
 		#filter of name 
