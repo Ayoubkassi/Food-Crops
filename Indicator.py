@@ -9,3 +9,6 @@ class Indicator(object):
 		self.__frequency = frequency
 		self.__frequencyDesc = frequencyDesc
 		self.__geoLocation = geoLocation
+
+	def get_geoLocation(self): 
+		return self.__geoLocation

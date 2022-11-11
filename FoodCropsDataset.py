@@ -82,16 +82,27 @@ class FoodCropsDataset(object):
 			measurement = FoodCropFactory.createMeasurement(row[13],row[18],row[16],row[17],commodity,indicator)
 			measurements[index] = measurement
 
+
+		return measurements
+
 			# column_value = row[3]
 			# print(column_value)
 		
 	
 	def findMeasurements(commodityGroup:CommodityGroup=None ,indicatorGroup:IndicatorGroup=None ,geoGraphicalLocation:str=None ,unit:Unit=None):
-		pass
+		measurements = FoodCropsDataset.load()
+		filterDict = (dict(filter(lambda x : (x[1].commodity.group,x[1].indicator.indicatorGroup,x[1].indicator.unit,x[1].indicator.get_geoLocation()) 
+			== 
+							(commodityGroup,indicatorGroup,unit,geoGraphicalLocation), measurements.items())))
+
+		if len(filterDict) == 0 :
+			return measurements
+		else :
+			return filterDict
 
 
 
-FoodCropsDataset.load()
+print(f' data size is : {len(FoodCropsDataset.findMeasurements())}')
 
 
 
