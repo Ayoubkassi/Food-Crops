@@ -9,7 +9,7 @@ class Measurement(object):
 		self.__value = value
 		self.__timeperiodId = timeperiodId
 		self.__timeperiodDescr = timeperiodDescr
-		self.commidity = commodity
+		self.commodity = commodity
 		self.indicator = indicator
 		# static generated id 
 		Measurement.id += 1
