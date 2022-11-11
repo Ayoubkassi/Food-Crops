@@ -59,11 +59,12 @@ def find(name:str=None, age:int=None, major:Major=None):
 		# filter of major
 		filtered_dict = (dict(filter(lambda x : x[1].major == major , filtered_dict.items())))
 
-	for (key,val) in filtered_dict.items():
-		print(f'key -> {key} --- val -> {val.name}, {val.major.name}')
+	# for (key,val) in filtered_dict.items():
+	# 	print(f'key -> {key} --- val -> {val.name}, {val.major.name}')
 
+	return filtered_dict
 
-find(None,18,major1)
+#find(None,18,major1)
 
 
 
