@@ -66,6 +66,8 @@ class FoodCropsDataset(object):
 				indicator = indicators[row[9]]
 			else :
 			    indicator = FoodCropFactory.createIndicator(row[9],row[14],row[15],row[6].strip(),IndicatorGroup(row[0]),unit)
+			    #add desription
+			    indicator.description = row[10]
 			    indicators[row[9]] = indicator
 
 			# print(indicator.get_geoLocation())
