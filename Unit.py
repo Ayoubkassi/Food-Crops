@@ -1,6 +1,11 @@
-from abc import ABC
+from Describable import Describable
 
-class Unit(ABC):
+
+class Unit(Describable):
 	def __init__(self,id:int,name:str):
 		self.id   = id 
 		self.name = name
+
+	def describe(self):
+		return self.name 
+

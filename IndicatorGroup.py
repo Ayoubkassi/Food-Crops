@@ -11,4 +11,4 @@ class IndicatorGroup(Enum):
 	
 
 
-print(IndicatorGroup(1))
+# print(IndicatorGroup(1))
