@@ -7,6 +7,3 @@ class Weight(Unit):
 
 
 
-
-# a = Weight(1,1,"Weight")
-# print(isinstance(a,Weight))
