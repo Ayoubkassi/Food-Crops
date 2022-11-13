@@ -18,7 +18,7 @@ class Measurement(Describable):
 		self.id = Measurement.id 
 
 	def describe(self):
-		return self.commodity.describe()+self.indicator.describe()
+		return self.commodity.describe()+" -- "+self.indicator.describe()
 		
 
 

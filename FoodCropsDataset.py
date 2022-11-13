@@ -27,10 +27,6 @@ class FoodCropsDataset(object):
 			if math.isnan(row[2]) :
 				continue
 
-
-			
-
-
 			# create unit
 			# for unit we have : 
 			# 4,5,12,14,31-> price
@@ -67,7 +63,7 @@ class FoodCropsDataset(object):
 			else :
 			    indicator = FoodCropFactory.createIndicator(row[9],row[14],row[15],row[6].strip(),IndicatorGroup(row[0]),unit)
 			    #add desription
-			    indicator.description = row[10]
+			    indicator.set_description(row[10])
 			    indicators[row[9]] = indicator
 
 			# print(indicator.get_geoLocation())
@@ -88,11 +84,12 @@ class FoodCropsDataset(object):
 			measurement = FoodCropFactory.createMeasurement(row[13],row[18],row[16],row[17],commodity,indicator)
 			measurements[index] = measurement
 
+			print(measurement.describe())
+
+
 
 		return measurements
 
-			# column_value = row[3]
-			# print(column_value)
 		
 	
 	def findMeasurements(commodityGroup:CommodityGroup=None ,indicatorGroup:IndicatorGroup=None ,geoGraphicalLocation:str=None ,unit:Unit=None):
