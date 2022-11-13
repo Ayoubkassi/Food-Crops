@@ -9,6 +9,6 @@ class Commodity(Describable):
 		self.__name = name
 
 	def describe(self):
-		return self.name
+		return self.__name
 
 
