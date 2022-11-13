@@ -93,6 +93,7 @@ class FoodCropsDataset(object):
 		
 	
 	def findMeasurements(commodityGroup:CommodityGroup=None ,indicatorGroup:IndicatorGroup=None ,geoGraphicalLocation:str=None ,unit:Unit=None):
+		#best complexity is 4*O(n) because we itterate over n object each time
 		filtered_measurements = FoodCropsDataset.load()
 		if commodityGroup is not None:
 			filtered_measurements = (dict(filter(lambda x : x[1].commodity.group == commodityGroup, filtered_measurements.items()))) 
